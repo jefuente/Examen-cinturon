@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block titulo %}INDEX USUARIO{% endblock %}
+
+{% block contenido %}
+
+
+<div class="row justify-content-between">
+    <div class="col-4">
+        <h3> {{request.session.usuario.name}} Citas</h3>
+
+    {% for quote in usuario.citas_posteadas.all %}
+        <div >
+
+            <p> {{ quote.autor }} : {{ quote.cita }}</p>
+                <a href="/destroy/{{quote.id}}">Delete</a>
+                <br>
+                <br>
+        </div>
+    {% endfor %}
+
+
+    </div>
+
+
+
+
+
+
+    <div class="col-4">
+        <h3></h3>
+
+
+
+
+
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block libreria %}
+{% endblock %}

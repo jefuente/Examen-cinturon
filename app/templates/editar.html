@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block titulo %}EDITAR USUARIO{% endblock %}
+
+{% block contenido %}
+
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <h3>Edit My Account</h3>
+        <form action= "/update/{{id}}" class="mt-1"  method="Post">
+            {% csrf_token %}
+          
+            <div class="form-group row">
+                <label for="nombre" class="col-sm-12 col-form-label">Nombre</label>
+                <div class="col-sm-12">
+                    <input type="text" required class="form-control" id="name" name="name" required value="{{usuario.name}}"> 
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for = "apellido">Apellido</label>
+                    <input type="text" required class="form-control" id="apellido" name="apellido" required value="{{usuario.apellido}}"> 
+                </div>
+                <div class="col-sm-6">
+                    <label for = "email">Email</label>
+                    <input type="email" required class="form-control" id="email" name="email" value="{{usuario.email}}"> 
+                </div>
+            </div>      
+
+
+            <div class="form-group row">
+                <div class=" col text-center">
+                    <button type="submit" class="btn btn-primary mt-3 ">Update</button>
+                </div>
+            </div>
+        </form>   
+              
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+{% block libreria %}
+
+
+{% endblock %}

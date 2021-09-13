@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block titulo %}INDEX USUARIO{% endblock %}
+
+{% block contenido %}
+
+
+<div class="row justify-content-between">
+    <div class="col-4">
+        <h3>Welcome  {{request.session.usuario.name}} !</h3>
+
+    {% for quote in citas %}
+        <div>
+            {{ quote.autor }} : {{ quote.cita }}
+            <p> Posteado por: <a href = "/users/{{quote.posteado_por.id}}"> {{quote.posteado_por}} </a> </p>
+            
+            <button style = "color:black" align="right" type="submit" class="btn btn-outline-success btn-dark btn-lg">
+            <a href="/quote/{{quote.id}}"> Me Gusta </a>
+            </button><br><br>
+
+        </div>
+    {% endfor %}
+
+
+    </div>
+
+
+
+
+
+
+    <div class="col-4">
+        <h3>Add a Quote!</h3>
+
+        <form action = '/quote_post' method = "POST">
+        {% csrf_token %}
+        <div class = "form-group">
+            <label for = "autor"> Author</label>
+            <textarea name = 'quote_author' rows = '1' cols = '50' class="form-control" id="autor" placeholder = 'Quoted by..'> </textarea>
+        </div>
+        <div class = "form-group">
+            <label for = "cita">Quote</label>
+            <textarea name = 'quote' rows = '3' cols = '50' class="form-control" id="autor" placeholder = 'Your quote here..'> </textarea><br>
+        </div>
+        <div style = "color:red; padding-bottom: 10px">
+            {% if messages %}
+            {% for message in messages %}
+                {% if message.extra_tags == "quote_post" %}
+                    {{ message }}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        </div>
+        <button style = "color:black" align="right" type="submit" class="btn btn-outline-success btn-primary btn-lg"> Submit </button>
+    </form>
+
+
+
+
+
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block libreria %}
+{% endblock %}
